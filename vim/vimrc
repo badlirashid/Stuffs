@@ -8,6 +8,8 @@ syntax on
 
 filetype plugin indent on
 
+colorscheme wombat256mod
+
 if &t_Co > 2 || has("gui_running")
     set title
     set guioptions=-t
@@ -18,16 +20,15 @@ if has("mouse")
 end
 
 if has("win32") || has("win64")
+    set guifont=Consolas:h10:cDEFAULT
     behave mswin
     set fileformat=dos
     set backspace=indent,eol,start whichwrap+=<,>,[,]
-    colorscheme molokai
 end
 
 if has("unix")
     set fileformat=unix
     set backspace=eol,start,indent
-    colorscheme wombat256mod
 end
 
 set encoding=utf-8
@@ -58,3 +59,6 @@ set shiftwidth=4
 set expandtab								" tab to spaces
 set autoindent
 set textwidth=80
+
+set visualbell
+set noerrorbells
