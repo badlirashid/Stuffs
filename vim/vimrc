@@ -1,4 +1,6 @@
+let g:skip_defaults_vim=1
 set nocompatible
+set nomodeline
 
 filetype off
 
@@ -16,11 +18,16 @@ if has("mouse")
 end
 
 if has("win32") || has("win64")
+    behave mswin
     set fileformat=dos
+    set backspace=indent,eol,start whichwrap+=<,>,[,]
+    colorscheme molokai
 end
 
 if has("unix")
     set fileformat=unix
+    set backspace=eol,start,indent
+    colorscheme wombat256mod
 end
 
 set encoding=utf-8
@@ -37,8 +44,6 @@ set cursorcolumn
 set nobackup								"No backups
 set nowb
 set noswapfile
-
-set backspace=eol,start,indent
 
 set ignorecase                              "Smarter Search
 set smartcase
