@@ -1,0 +1,55 @@
+set nocompatible
+
+filetype off
+
+syntax on
+
+filetype plugin indent on
+
+if &t_Co > 2 || has("gui_running")
+    set title
+    set guioptions=-t
+end
+
+if has("mouse")
+    set mouse=a
+end
+
+if has("win32") || has("win64")
+    set fileformat=dos
+end
+
+if has("unix")
+    set fileformat=unix
+end
+
+set encoding=utf-8
+set fileencoding=utf-8
+
+set ruler
+set number
+set wrap
+set numberwidth=3
+
+set cursorline                              "Set highlight
+set cursorcolumn
+
+set nobackup								"No backups
+set nowb
+set noswapfile
+
+set backspace=eol,start,indent
+
+set ignorecase                              "Smarter Search
+set smartcase
+set hlsearch
+set incsearch
+
+set showmatch
+
+set tabstop=4								" pep8 tabs formats
+set softtabstop=4	
+set shiftwidth=4
+set expandtab								" tab to spaces
+set autoindent
+set textwidth=80
