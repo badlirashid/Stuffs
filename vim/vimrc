@@ -4,11 +4,25 @@ set nomodeline
 
 filetype off
 
-syntax on
+if has('autocmd')
+    filetype plugin indent on
+end
 
-filetype plugin indent on
+if has('syntax') && !exists('g:syntax_on')
+    syntax on
+end
 
-colorscheme wombat256mod
+colorscheme zenburn
+
+"Ask us to use the hlkj keys instead
+nnoremap    <Left>  :echoe  "Use h"<CR> 
+nnoremap    <Right> :echoe  "Use l"<CR>
+nnoremap    <Up>    :echoe  "Use k"<CR>
+nnoremap    <Down>  :echoe  "Use j"<CR>
+
+"Ask us to use the control key
+nnoremap    <PageUp>    :echoe  "Use [control] [f]"<CR>
+nnoremap    <PageDown>  :echoe  "Use [control] [b]"<CR>
 
 if &t_Co > 2 || has("gui_running")
     set title
@@ -37,7 +51,7 @@ set fileencoding=utf-8
 set ruler
 set number
 set wrap
-set numberwidth=3
+set numberwidth=2
 
 set cursorline                              "Set highlight
 set cursorcolumn
