@@ -1,0 +1,4 @@
+* Badli configuration file
+  Configurations for
+  + vim
+  + emacs
