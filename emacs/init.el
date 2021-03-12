@@ -5,7 +5,7 @@
 ;; Author  :    Badli Rashid
 ;; Created :    2021-MAC-03
 ;; URL     :    https://github.com/badlirashid/Stuffs
-;; Version :    0.0.4
+;; Version :    0.0.5
 
 
 ;; This file is NOT part of GNU Emacs.
@@ -15,7 +15,7 @@
 ;; Badli boring Emacs init.el configuration file.
 ;; Taken from various sources.
 
-;;; License:
+;;; Licenses:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -99,6 +99,11 @@
 
 ;;;; Begins
 (fset 'yes-or-no-p 'y-or-n-p)
+
+;;;; aspell
+(setq ispell-program-name "aspell")
+(setq ispell-extra-args '("-l en_US -a"))
+(setq ispell-dictionary "en_US")
 
 ;;;; IDO
 (ido-mode)
