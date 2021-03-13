@@ -5,7 +5,7 @@
 ;; Author  :    Badli Rashid
 ;; Created :    2021-MAC-03
 ;; URL     :    https://github.com/badlirashid/Stuffs
-;; Version :    0.0.7
+;; Version :    0.0.8
 
 
 ;; This file is NOT part of GNU Emacs.
@@ -65,6 +65,13 @@
  tab-width 2
  indent-tabs-mode nil
  select-enable-clipboard t)
+
+;;;;; Frame title
+(setq-default
+ frame-title-format
+ '((:eval (if (buffer-file-name)
+              (abbreviate-file-name (buffer-file-name))
+            "%b"))))
 
 ;;;;; Backup Options
 (setq-default
@@ -138,7 +145,7 @@
   (flyspell-mode))
 
 (defun prog-spell-check-on ()
-  "Check spelling on prog."
+  "Check spelling on prog-mode."
   (flyspell-prog-mode))
 
 
