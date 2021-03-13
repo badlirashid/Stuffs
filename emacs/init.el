@@ -5,7 +5,7 @@
 ;; Author  :    Badli Rashid
 ;; Created :    2021-MAC-03
 ;; URL     :    https://github.com/badlirashid/Stuffs
-;; Version :    0.0.5
+;; Version :    0.0.6
 
 
 ;; This file is NOT part of GNU Emacs.
@@ -33,7 +33,7 @@
 
 ;; Boston, MA 02110-1301, USA.
 
-;; See <https://www.gnu.org/licenses/>.
+;; https://www.gnu.org/licenses/
 
 ;;; Code:
 
@@ -100,35 +100,43 @@
 ;;;; Begins
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;;;; aspell
-(setq ispell-program-name "aspell")
-(setq ispell-extra-args '("-l en_US -a"))
-(setq ispell-dictionary "en_US")
+;;;; Colors or Colours ?
+(setq ispell-program-name "aspell"
+      ispell-extra-args '("-l en_GB -a")
+      ispell-dictionary "en_GB")
 
 ;;;; IDO
 (ido-mode)
 (setq ido-everywhere 1
       ido-enable-flex-matching 1)
 
-;;;; Add-Hooks
-(add-hook 'prog-mode-hook #'linum-mode)
-(add-hook 'prog-mode-hook #'electric-pair-local-mode)
+(defun turn-code-feature-on ()
+  "Turn on code features."
+  (linum-mode 1)
+  (electric-pair-local-mode 1)
+  (rainbow-delimiters-mode 1)
+  (setq show-paren-delay 0)
+  (show-paren-mode 1))
 
-(setq show-paren-delay 0)
-(add-hook 'prog-mode-hook #'show-paren-mode)
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(defun turn-code-completion-on ()
+  "Enable code completion feature."
+  (setq company-minimum-prefix-length 1)
+  (company-mode 1)
+  (setq company-quickhelp-delay 1)
+  (company-quickhelp-mode 1))
 
-(setq company-minimum-prefix-length 1)
-(add-hook 'prog-mode-hook #'company-mode)
-(setq company-quickhelp-delay 1)
-(add-hook 'company-mode-hook #'company-quickhelp-mode)
+(defun turn-code-syntax-check-on ()
+  "Code checking for Ruby and Python."
+  (setq ruby-flymake-use-rubocop-if-available t)
+  (setq python-flymake-command '("flake8" "-"))
+  (flymake-mode 1))
 
-(setq ruby-flymake-use-rubocop-if-available t)
-(setq python-flymake-command '("flake8" "-"))
+;;;; Add our hooks
+(add-hook 'prog-mode-hook #'turn-code-feature-on)
+(add-hook 'prog-mode-hook #'turn-code-completion-on)
+(add-hook 'prog-mode-hook #'turn-code-syntax-check-on)
 
-(add-hook 'prog-mode-hook #'flymake-mode)
 (add-hook 'prog-mode-hook #'flyspell-prog-mode)
-
 (add-hook 'text-mode-hook #'flyspell-mode)
 (add-hook 'org-mode-hook #'flyspell-mode)
 
