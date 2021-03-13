@@ -1,4 +1,7 @@
 * Badli configuration file
+  Old site https://github.com/badlirashid/Stuffs
+  New site https://git.sr.ht/~badli/Stuffs
+
   Configurations for
   + vim
   + emacs
