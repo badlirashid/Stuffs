@@ -5,7 +5,7 @@
 ;; Author  :    Badli Rashid
 ;; Created :    2021-MAC-03
 ;; URL     :    https://github.com/badlirashid/Stuffs
-;; Version :    0.0.6
+;; Version :    0.0.7
 
 
 ;; This file is NOT part of GNU Emacs.
@@ -101,6 +101,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;;;; Colors or Colours ?
+(setenv "LANG" "en_GB.UTF8")
 (setq ispell-program-name "aspell"
       ispell-extra-args '("-l en_GB -a")
       ispell-dictionary "en_GB")
@@ -126,19 +127,29 @@
   (company-quickhelp-mode 1))
 
 (defun turn-code-syntax-check-on ()
-  "Code checking for Ruby and Python."
+  "Code checking."
   (setq ruby-flymake-use-rubocop-if-available t)
   (setq python-flymake-command '("flake8" "-"))
   (flymake-mode 1))
+
+(defun text-spell-check-on ()
+  "Check spelling on text."
+  (flyspell-buffer)
+  (flyspell-mode))
+
+(defun prog-spell-check-on ()
+  "Check spelling on prog."
+  (flyspell-prog-mode))
+
 
 ;;;; Add our hooks
 (add-hook 'prog-mode-hook #'turn-code-feature-on)
 (add-hook 'prog-mode-hook #'turn-code-completion-on)
 (add-hook 'prog-mode-hook #'turn-code-syntax-check-on)
 
-(add-hook 'prog-mode-hook #'flyspell-prog-mode)
-(add-hook 'text-mode-hook #'flyspell-mode)
-(add-hook 'org-mode-hook #'flyspell-mode)
+(add-hook 'prog-mode-hook #'prog-spell-check-on)
+(add-hook 'text-mode-hook #'text-spell-check-on)
+(add-hook 'org-mode-hook #'text-spell-check-on)
 
 ;;;; Inf-Ruby
 (autoload 'inf-ruby "inf-ruby" "Run Inf-Ruby process" t)
@@ -166,6 +177,7 @@
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
+(global-set-key (kbd "<f7>") 'flyspell-buffer)
 
 (provide 'init)
 ;;; init.el ends here
